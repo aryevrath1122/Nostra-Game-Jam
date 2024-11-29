@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    [SerializeField] private GameObject target;
+    // [SerializeField] private GameObject target;
     [SerializeField] private float speed = 5f;
 
 
@@ -13,7 +13,9 @@ public class Obstacle : MonoBehaviour
 
     private void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+        
+        transform.Translate(-Vector3.right * speed * Time.deltaTime);
+        //transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
 
     }
     // Handle collision with the player
@@ -26,6 +28,3 @@ public class Obstacle : MonoBehaviour
         }
     }
 }
-
-
-
