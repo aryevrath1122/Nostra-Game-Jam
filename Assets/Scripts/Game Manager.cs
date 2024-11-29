@@ -8,11 +8,17 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     PlayerManager pm;
+    public GameObject PauseButton;
     public GameObject PauseMenu;
-    public TextMeshProUGUI BoltCountText; 
+    public GameObject PlayerPrefab;
+    public GameObject TutorialText;
+    public TextMeshProUGUI BoltCountText;
+    public float delay = 5f;
+
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine(DisappearAfterDelay());
         pm = FindObjectOfType<PlayerManager>();
         PauseMenu.SetActive(false);
     }
@@ -21,10 +27,12 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         UpdateScoreDisplay();
-        if (Input.GetKey(KeyCode.Escape))
+        for (int i = 5; i > 0; i--)
         {
-            Time.timeScale = 0;
-            PauseMenu?.SetActive(true);
+            if (i == 0)
+            {
+                TutorialText.SetActive(false);
+            }
         }
     }
     private void UpdateScoreDisplay()
@@ -34,6 +42,8 @@ public class GameManager : MonoBehaviour
     public void Resume()
     {
         PauseMenu.SetActive(false);
+        PauseButton.SetActive(true);
+        PlayerPrefab.SetActive(true);
         Time.timeScale = 1;
     }
     public void Restart()
@@ -44,5 +54,17 @@ public class GameManager : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+    public void Pause()
+    {
+        Time.timeScale = 0;
+        PauseMenu?.SetActive(true);
+        PauseButton?.SetActive(false);
+        PlayerPrefab?.SetActive(false);
+    }
+    IEnumerator DisappearAfterDelay()
+    {
+        yield return new WaitForSeconds(delay); // Wait for the specified time
+       TutorialText.SetActive(false); // Deactivate the GameObject
     }
 }

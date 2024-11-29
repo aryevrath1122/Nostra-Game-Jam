@@ -64,7 +64,7 @@ public class PlayerManager : MonoBehaviour
         {
             Debug.Log("Collided");
             // Load the scene
-            SceneManager.LoadScene("Flying Test");
+            SceneManager.LoadScene("Lvl 2");
         }
         if(collision.collider.CompareTag("Obstacles"))
         {
