@@ -23,7 +23,7 @@ public class CoinCollector : MonoBehaviour
         if (collision.collider.CompareTag("Player"))
         {
             Debug.Log("Coin Collided");
-            this.gameObject.SetActive(false);
+            Destroy(gameObject);
             playerManager.CurrentCoinsCollected++;
             Debug.Log("Coin Collected");
             

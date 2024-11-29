@@ -12,6 +12,9 @@ TagManager:
   - Lvl Key
   - Portal
   - Obstacles
+  - EndPointObstacle
+  - CoinEnd1
+  - CoinEnd2
   layers:
   - Default
   - TransparentFX

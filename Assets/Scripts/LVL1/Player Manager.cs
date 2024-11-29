@@ -12,14 +12,16 @@ public class PlayerManager : MonoBehaviour
     public int CurrentCoinsCollected = 0;
 
     [Header("References")]
-    public GameObject KeyPrefab;
+    
     public GameObject PortalPrefab;
     public Transform LvlSpawnPos;
     private CoinCollector coinCollector;
     // Start is called before the first frame update
     void Start()
     {
+        PortalPrefab.SetActive(false);
         coinCollector = FindObjectOfType<CoinCollector>();
+        PortalSpawn();
     }
 
     // Update is called once per frame
@@ -42,6 +44,18 @@ public class PlayerManager : MonoBehaviour
         this.gameObject.SetActive(true);
         CurrentPlayerLives--;
     }
+    void Respawn()
+    {
+        this.gameObject.transform.position = LvlSpawnPos.transform.position;
+        this.gameObject.SetActive(true);
+    }
+    void PortalSpawn()
+    {
+        if (CurrentCoinsCollected == 10)
+        {
+            PortalPrefab.SetActive(true);
+        }
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -50,6 +64,12 @@ public class PlayerManager : MonoBehaviour
             Debug.Log("Collided");
             // Load the scene
             SceneManager.LoadScene("Flying Test");
+        }
+        if(collision.collider.CompareTag("Obstacles"))
+        {
+            this.gameObject.SetActive(false);
+            CurrentPlayerLives--;
+            Respawn();
         }
     }
  
