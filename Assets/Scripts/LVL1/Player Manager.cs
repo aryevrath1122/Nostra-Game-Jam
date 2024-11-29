@@ -8,7 +8,7 @@ public class PlayerManager : MonoBehaviour
     [Header("Max and Current Values")]
     public int MaxPlayerLives = 3;
     public int CurrentPlayerLives = 3;
-    public int MaxCoinsToCollect = 12;
+    public int MaxCoinsToCollect = 10;
     public int CurrentCoinsCollected = 0;
 
     [Header("References")]
@@ -21,12 +21,13 @@ public class PlayerManager : MonoBehaviour
     {
         PortalPrefab.SetActive(false);
         coinCollector = FindObjectOfType<CoinCollector>();
-        PortalSpawn();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        PortalSpawn();
         LivesDetect();
     }
     void LivesDetect()
