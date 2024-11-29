@@ -11,6 +11,7 @@ TagManager:
   - Enemy Bullet
   - Lvl Key
   - Portal
+  - Obstacles
   layers:
   - Default
   - TransparentFX
